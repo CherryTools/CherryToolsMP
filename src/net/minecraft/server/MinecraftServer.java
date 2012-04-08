@@ -154,7 +154,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
         threadcommandreader.setDaemon(true);
         threadcommandreader.start();
         ConsoleLogManager.init();
-        logger.info("Starting minecraft server version 1.2.5");
+        logger.info("Starte Minecraft Server Version: 1.2.5");
 
         if (Runtime.getRuntime().maxMemory() / 1024L / 1024L < 512L)
         {

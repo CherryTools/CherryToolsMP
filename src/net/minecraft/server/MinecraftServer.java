@@ -154,22 +154,23 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
         threadcommandreader.setDaemon(true);
         threadcommandreader.start();
         ConsoleLogManager.init();
-        logger.info("Starting minecraft server version 1.2.5");
+        logger.info("Starting Minecraft server version 1.2.5");
 
         if (Runtime.getRuntime().maxMemory() / 1024L / 1024L < 512L)
         {
-            logger.warning("To start the server with more ram, launch it as \"java -Xmx1024M -Xms1024M -jar minecraft_server.jar\"");
+            logger.warning("*** Need more Money to launch lagfree ***");
+            logger.warning("To start the server with more ram, launch it as \"java -Xmx1024M -Xms1024M -jar craftcherry.jar\" ");
         }
 
         logger.info("Loading properties");
         propertyManagerObj = new PropertyManager(new File("server.properties"));
         hostname = propertyManagerObj.getStringProperty("server-ip", "");
-        onlineMode = propertyManagerObj.getBooleanProperty("online-mode", true);
-        spawnPeacefulMobs = propertyManagerObj.getBooleanProperty("spawn-animals", true);
-        field_44002_p = propertyManagerObj.getBooleanProperty("spawn-npcs", true);
+        onlineMode = propertyManagerObj.getBooleanProperty("chracked", true);
+        spawnPeacefulMobs = propertyManagerObj.getBooleanProperty("animals", true);
+        field_44002_p = propertyManagerObj.getBooleanProperty("npcs", true);
         pvpOn = propertyManagerObj.getBooleanProperty("pvp", true);
-        allowFlight = propertyManagerObj.getBooleanProperty("allow-flight", false);
-        motd = propertyManagerObj.getStringProperty("motd", "A Minecraft Server");
+        allowFlight = propertyManagerObj.getBooleanProperty("flight", true);
+        motd = propertyManagerObj.getStringProperty("motd", "CraftCherrySMP v1.2.5");
         motd.replace('\247', '$');
         InetAddress inetaddress = null;
 
@@ -179,7 +180,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
         }
 
         serverPort = propertyManagerObj.getIntProperty("server-port", 25565);
-        logger.info((new StringBuilder()).append("Starting Minecraft server on ").append(hostname.length() != 0 ? hostname : "*").append(":").append(serverPort).toString());
+        logger.info((new StringBuilder()).append("Starting Server on ").append(hostname.length() != 0 ? hostname : "*").append(":").append(serverPort).toString());
 
         try
         {
@@ -187,7 +188,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
         }
         catch (IOException ioexception)
         {
-            logger.warning("**** FAILED TO BIND TO PORT!");
+            logger.warning("*** FAILED TO BIND TO PORT! ***");
             logger.log(Level.WARNING, (new StringBuilder()).append("The exception was: ").append(ioexception.toString()).toString());
             logger.warning("Perhaps a server is already running on that port?");
             return false;
@@ -195,10 +196,10 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
 
         if (!onlineMode)
         {
-            logger.warning("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
+            logger.warning("*** SERVER IS RUNNING IN OFFLINE/INSECURE MODE! ***");
             logger.warning("The server will make no attempt to authenticate usernames. Beware.");
             logger.warning("While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.");
-            logger.warning("To change this, set \"online-mode\" to \"true\" in the server.settings file.");
+            logger.warning("To change this, set \"online-mode\" to \"true\" in the server.settings file or install a addon / gamemode that Provide an authentic Plugin.");
         }
 
         configManager = new ServerConfigurationManager(this);
@@ -239,25 +240,23 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
         buildLimit = ((buildLimit + 8) / 16) * 16;
         buildLimit = MathHelper.clamp_int(buildLimit, 64, 256);
         propertyManagerObj.setProperty("max-build-height", Integer.valueOf(buildLimit));
-        logger.info((new StringBuilder()).append("Preparing level \"").append(s).append("\"").toString());
+        logger.info((new StringBuilder()).append("Load region level \"").append(s).append("\"").toString());
         initWorld(new AnvilSaveConverter(new File(".")), s, l1, worldtype);
         long l3 = System.nanoTime() - l;
         String s3 = String.format("%.3fs", new Object[]
                 {
                     Double.valueOf((double)l3 / 1000000000D)
                 });
-        logger.info((new StringBuilder()).append("Done (").append(s3).append(")! For help, type \"help\" or \"?\"").toString());
+        logger.info((new StringBuilder()).append("Started (").append(s3).append(")! For help, type \"help\" or \"?\"").toString());
 
         if (propertyManagerObj.getBooleanProperty("enable-query", false))
         {
-            logger.info("Starting GS4 status listener");
             rconQueryThread = new RConThreadQuery(this);
             rconQueryThread.startThread();
         }
 
         if (propertyManagerObj.getBooleanProperty("enable-rcon", false))
         {
-            logger.info("Starting remote control listener");
             rconMainThread = new RConThreadMain(this);
             rconMainThread.startThread();
         }
@@ -280,7 +279,6 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
         field_40028_g = new long[worldMngr.length][100];
         int i = propertyManagerObj.getIntProperty("gamemode", 0);
         i = WorldSettings.validGameType(i);
-        logger.info((new StringBuilder()).append("Default game type: ").append(i).toString());
         boolean flag = propertyManagerObj.getBooleanProperty("generate-structures", true);
         WorldSettings worldsettings = new WorldSettings(par3, i, flag, false, par5WorldType);
         AnvilSaveHandler anvilsavehandler = new AnvilSaveHandler(new File("."), par2Str, true);
@@ -320,7 +318,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
 
         for (int k = 0; k < 1; k++)
         {
-            logger.info((new StringBuilder()).append("Preparing start region for level ").append(k).toString());
+            logger.info((new StringBuilder()).append("Load world LevelID: ").append(k).toString());
             WorldServer worldserver = worldMngr[k];
             ChunkCoordinates chunkcoordinates = worldserver.getSpawnPoint();
 
@@ -339,7 +337,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
                     {
                         int k1 = (c * 2 + 1) * (c * 2 + 1);
                         int i2 = (i1 + c) * (c * 2 + 1) + (j1 + 1);
-                        outputPercentRemaining("Preparing spawn area", (i2 * 100) / k1);
+                        //outputPercentRemaining("", (i2 * 100) / k1);
                         l = l1;
                     }
 
@@ -377,7 +375,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
      */
     private void saveServerWorld()
     {
-        logger.info("Saving chunks");
+        logger.info("Saving world");
 
         for (int i = 0; i < worldMngr.length; i++)
         {
@@ -392,7 +390,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
      */
     private void stopServer()
     {
-        logger.info("Stopping server");
+        logger.info("Stopping CherryToolsSMP");
 
         if (configManager != null)
         {
@@ -433,7 +431,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
 
                     if (var7 > 2000L)
                     {
-                        logger.warning("Can\'t keep up! Did the system time change, or is the server overloaded?");
+                        logger.warning("Is the Server overloaded?");
                         var7 = 2000L;
                     }
 
@@ -629,19 +627,13 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
         playersOnline.add(par1IUpdatePlayerListBox);
     }
 
-    public static void main(String par0ArrayOfStr[])
+    public static void start(String par0ArrayOfStr[])
     {
         StatList.func_27092_a();
 
         try
         {
             MinecraftServer minecraftserver = new MinecraftServer();
-
-            if (!java.awt.GraphicsEnvironment.isHeadless() && (par0ArrayOfStr.length <= 0 || !par0ArrayOfStr[0].equals("nogui")))
-            {
-                ServerGUI.initGui(minecraftserver);
-            }
-
             (new ThreadServerApplication("Server thread", minecraftserver)).start();
         }
         catch (Exception exception)
@@ -896,7 +888,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer
 
     public String func_52003_getServerModName()
     {
-        return "vanilla";
+        return "CraftCherrySMP";
     }
 
     /**

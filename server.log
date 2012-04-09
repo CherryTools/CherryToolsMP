@@ -1,0 +1,84 @@
+2012-04-08 16:54:02 [INFO] Starting minecraft server version 1.2.5
+2012-04-08 16:54:02 [WARNING] To start the server with more ram, launch it as "java -Xmx1024M -Xms1024M -jar minecraft_server.jar"
+2012-04-08 16:54:02 [INFO] Loading properties
+2012-04-08 16:54:02 [WARNING] server.properties does not exist
+2012-04-08 16:54:02 [INFO] Generating new properties file
+2012-04-08 16:54:02 [INFO] Starting Minecraft server on *:25565
+2012-04-08 16:54:02 [WARNING] Failed to load ban list: java.io.FileNotFoundException: banned-players.txt (Das System kann die angegebene Datei nicht finden)
+2012-04-08 16:54:02 [WARNING] Failed to load ip ban list: java.io.FileNotFoundException: banned-ips.txt (Das System kann die angegebene Datei nicht finden)
+2012-04-08 16:54:02 [WARNING] Failed to load operators list: java.io.FileNotFoundException: ops.txt (Das System kann die angegebene Datei nicht finden)
+2012-04-08 16:54:02 [WARNING] Failed to load white-list: java.io.FileNotFoundException: white-list.txt (Das System kann die angegebene Datei nicht finden)
+2012-04-08 16:54:02 [INFO] Preparing level "world"
+2012-04-08 16:54:02 [INFO] Default game type: 0
+2012-04-08 16:54:03 [INFO] Preparing start region for level 0
+2012-04-08 16:54:04 [INFO] Preparing spawn area: 4%
+2012-04-08 16:54:05 [INFO] Preparing spawn area: 8%
+2012-04-08 16:54:06 [INFO] Preparing spawn area: 12%
+2012-04-08 16:54:07 [INFO] Preparing spawn area: 16%
+2012-04-08 16:54:08 [INFO] Preparing spawn area: 24%
+2012-04-08 16:54:09 [INFO] Preparing spawn area: 28%
+2012-04-08 16:54:10 [INFO] Preparing spawn area: 36%
+2012-04-08 16:54:11 [INFO] Preparing spawn area: 40%
+2012-04-08 16:54:12 [INFO] Preparing spawn area: 44%
+2012-04-08 16:54:13 [INFO] Preparing spawn area: 48%
+2012-04-08 16:54:14 [INFO] Preparing spawn area: 53%
+2012-04-08 16:54:15 [INFO] Preparing spawn area: 60%
+2012-04-08 16:54:16 [INFO] Preparing spawn area: 65%
+2012-04-08 16:54:17 [INFO] Preparing spawn area: 69%
+2012-04-08 16:54:18 [INFO] Preparing spawn area: 73%
+2012-04-08 16:54:19 [INFO] Preparing spawn area: 77%
+2012-04-08 16:54:20 [INFO] Preparing spawn area: 81%
+2012-04-08 16:54:21 [INFO] Preparing spawn area: 85%
+2012-04-08 16:54:22 [INFO] Preparing spawn area: 89%
+2012-04-08 16:54:23 [INFO] Preparing spawn area: 97%
+2012-04-08 16:54:25 [INFO] Done (21,889s)! For help, type "help" or "?"
+2012-04-08 16:54:30 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 16:54:32 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 16:55:33 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 16:56:45 [INFO] Stopping server
+2012-04-08 16:56:45 [INFO] Saving chunks
+2012-04-08 16:56:46 [INFO] Saving chunks
+2012-04-08 16:56:46 [INFO] Saving chunks
+2012-04-08 16:59:08 [INFO] Starting minecraft server version 1.2.5
+2012-04-08 16:59:08 [WARNING] To start the server with more ram, launch it as "java -Xmx1024M -Xms1024M -jar minecraft_server.jar"
+2012-04-08 16:59:08 [INFO] Loading properties
+2012-04-08 16:59:09 [INFO] Starting Minecraft server on *:25565
+2012-04-08 16:59:12 [INFO] Preparing level "world"
+2012-04-08 16:59:13 [INFO] Default game type: 0
+2012-04-08 16:59:18 [INFO] Preparing start region for level 0
+2012-04-08 16:59:20 [INFO] Preparing spawn area: 0%
+2012-04-08 16:59:21 [INFO] Preparing spawn area: 0%
+2012-04-08 16:59:22 [INFO] Preparing spawn area: 4%
+2012-04-08 16:59:23 [INFO] Preparing spawn area: 12%
+2012-04-08 16:59:24 [INFO] Preparing spawn area: 16%
+2012-04-08 16:59:25 [INFO] Preparing spawn area: 24%
+2012-04-08 16:59:28 [INFO] Preparing spawn area: 24%
+2012-04-08 16:59:29 [INFO] Preparing spawn area: 32%
+2012-04-08 16:59:30 [INFO] Preparing spawn area: 36%
+2012-04-08 16:59:31 [INFO] Preparing spawn area: 40%
+2012-04-08 16:59:32 [INFO] Preparing spawn area: 48%
+2012-04-08 16:59:33 [INFO] Preparing spawn area: 52%
+2012-04-08 16:59:34 [INFO] Preparing spawn area: 53%
+2012-04-08 16:59:35 [INFO] Preparing spawn area: 61%
+2012-04-08 16:59:36 [INFO] Preparing spawn area: 65%
+2012-04-08 16:59:37 [INFO] Preparing spawn area: 73%
+2012-04-08 16:59:39 [INFO] Preparing spawn area: 77%
+2012-04-08 16:59:40 [INFO] Preparing spawn area: 85%
+2012-04-08 16:59:41 [INFO] Preparing spawn area: 93%
+2012-04-08 16:59:42 [INFO] Preparing spawn area: 97%
+2012-04-08 16:59:44 [INFO] Done (30,474s)! For help, type "help" or "?"
+2012-04-08 16:59:47 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 16:59:51 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 16:59:54 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 17:00:08 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 17:00:33 [INFO] Buddy251 [/127.0.0.1:62819] logged in with entity id 2682 at (8.5, 84.62000000476837, -7.5)
+2012-04-08 17:00:39 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 17:00:54 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 17:01:06 [INFO] Buddy251 lost connection: disconnect.quitting
+2012-04-08 17:01:21 [INFO] /127.0.0.1:62886 lost connection
+2012-04-08 17:01:26 [INFO] /127.0.0.1:62896 lost connection
+2012-04-08 17:01:28 [INFO] Buddy251 [/127.0.0.1:62901] logged in with entity id 3718 at (12.699999988079071, 84.0, -4.300000011920929)
+2012-04-08 17:01:57 [INFO] Buddy251 lost connection: disconnect.quitting
+2012-04-08 17:03:03 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 17:05:02 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-04-08 17:07:02 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?

@@ -71,7 +71,7 @@ public class ServerConfigurationManager
         playerManagerObj[0] = new PlayerManager(par1MinecraftServer, 0, i);
         playerManagerObj[1] = new PlayerManager(par1MinecraftServer, -1, i);
         playerManagerObj[2] = new PlayerManager(par1MinecraftServer, 1, i);
-        maxPlayers = par1MinecraftServer.propertyManagerObj.getIntProperty("max-players", 20);
+        maxPlayers = par1MinecraftServer.propertyManagerObj.getIntProperty("slots", 120);
         whiteListEnforced = par1MinecraftServer.propertyManagerObj.getBooleanProperty("white-list", false);
         readBannedPlayers();
         loadBannedList();
@@ -210,12 +210,6 @@ public class ServerConfigurationManager
         if (bannedIPs.contains(s))
         {
             par1NetLoginHandler.kickUser("Your IP address is banned from this server!");
-            return null;
-        }
-
-        if (playerEntities.size() >= maxPlayers)
-        {
-            par1NetLoginHandler.kickUser("The server is full!");
             return null;
         }
 

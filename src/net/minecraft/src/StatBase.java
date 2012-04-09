@@ -58,7 +58,6 @@ public class StatBase
         {
             StatList.allStats.add(this);
             StatList.oneShotStats.put(Integer.valueOf(statId), this);
-            statGuid = AchievementMap.getGuid(statId);
             return this;
         }
     }

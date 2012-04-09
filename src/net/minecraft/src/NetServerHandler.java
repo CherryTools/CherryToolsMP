@@ -104,7 +104,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener
             playerEntity.func_30002_A();
             sendPacket(new Packet255KickDisconnect(par1Str));
             netManager.serverShutdown();
-            mcServer.configManager.sendPacketToAllPlayers(new Packet3Chat((new StringBuilder()).append("\247e").append(playerEntity.username).append(" left the game.").toString()));
+            //TODO mcServer.configManager.sendPacketToAllPlayers(new Packet3Chat((new StringBuilder()).append("\247e").append(playerEntity.username).append(" left the game.").toString()));
             mcServer.configManager.playerLoggedOut(playerEntity);
             connectionClosed = true;
             return;
@@ -155,7 +155,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener
                     if (par1Packet10Flying.xPosition > 1.0D || par1Packet10Flying.zPosition > 1.0D)
                     {
                         System.err.println((new StringBuilder()).append(playerEntity.username).append(" was caught trying to crash the server with an invalid position.").toString());
-                        kickPlayer("Nope!");
+                        kickPlayer("Zzz!");
                         return;
                     }
 
@@ -255,7 +255,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener
             if (d14 > 100D)
             {
                 logger.warning((new StringBuilder()).append(playerEntity.username).append(" moved too quickly!").toString());
-                kickPlayer("You moved too quickly :( (Hacking?)");
+                kickPlayer("That was soo fast!! (Hacking?)");
                 return;
             }
 
@@ -310,8 +310,8 @@ public class NetServerHandler extends NetHandler implements ICommandListener
 
                     if (playerInAirTime > 80)
                     {
-                        logger.warning((new StringBuilder()).append(playerEntity.username).append(" was kicked for floating too long!").toString());
-                        kickPlayer("Flying is not enabled on this server");
+                        logger.warning((new StringBuilder()).append(playerEntity.username).append(" was kicked because he floating!").toString());
+                        kickPlayer("Flying dont allow!");
                         return;
                     }
                 }
@@ -476,7 +476,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener
         }
         else
         {
-            playerEntity.playerNetServerHandler.sendPacket(new Packet3Chat((new StringBuilder()).append("\2477Height limit for building is ").append(mcServer.buildLimit).toString()));
+            playerEntity.playerNetServerHandler.sendPacket(new Packet3Chat((new StringBuilder()).append("\2477You cannot Build so high ").append(mcServer.buildLimit).toString()));
             flag = true;
         }
 
@@ -584,7 +584,6 @@ public class NetServerHandler extends NetHandler implements ICommandListener
 
         if (s.length() > 100)
         {
-            kickPlayer("Chat message too long");
             return;
         }
 
@@ -594,7 +593,6 @@ public class NetServerHandler extends NetHandler implements ICommandListener
         {
             if (!ChatAllowedCharacters.isAllowedCharacter(s.charAt(i)))
             {
-                kickPlayer("Illegal characters in chat");
                 return;
             }
         }
@@ -614,7 +612,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener
 
         if (field_45001_m > 200)
         {
-            kickPlayer("disconnect.spam");
+            kickPlayer("Dont Spamming >.<");
         }
     }
 
@@ -623,6 +621,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener
      */
     private void handleSlashCommand(String par1Str)
     {
+        /**
         if (par1Str.toLowerCase().startsWith("/me "))
         {
             par1Str = (new StringBuilder()).append("* ").append(playerEntity.username).append(" ").append(par1Str.substring(par1Str.indexOf(" ")).trim()).toString();
@@ -661,6 +660,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener
             String s1 = par1Str.substring(1);
             logger.info((new StringBuilder()).append(playerEntity.username).append(" tried command: ").append(s1).toString());
         }
+        **/
     }
 
     public void handleAnimation(Packet18Animation par1Packet18Animation)

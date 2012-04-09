@@ -2,7 +2,6 @@ package net.minecraft.src;
 
 public class StatCollector
 {
-    private static StringTranslate localizedName = StringTranslate.getInstance();
 
     public StatCollector()
     {
@@ -13,7 +12,7 @@ public class StatCollector
      */
     public static String translateToLocal(String par0Str)
     {
-        return localizedName.translateKey(par0Str);
+            return par0Str;
     }
 
     /**
@@ -21,6 +20,6 @@ public class StatCollector
      */
     public static String translateToLocalFormatted(String par0Str, Object par1ArrayOfObj[])
     {
-        return localizedName.translateKeyFormat(par0Str, par1ArrayOfObj);
+        return par0Str;
     }
 }

@@ -761,9 +761,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void addChatMessage(String par1Str)
     {
-        StringTranslate stringtranslate = StringTranslate.getInstance();
-        String s = stringtranslate.translateKey(par1Str);
-        playerNetServerHandler.sendPacket(new Packet3Chat(s));
+        playerNetServerHandler.sendPacket(new Packet3Chat(par1Str));
     }
 
     /**

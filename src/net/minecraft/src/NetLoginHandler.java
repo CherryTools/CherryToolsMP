@@ -66,7 +66,7 @@ public class NetLoginHandler extends NetHandler
 
         if (loginTimer++ == 600)
         {
-            kickUser("Took too long to log in");
+            kickUser("Connection Timed Out.");
         }
         else
         {
@@ -81,7 +81,7 @@ public class NetLoginHandler extends NetHandler
     {
         try
         {
-            logger.info((new StringBuilder()).append("Disconnecting ").append(getUserAndIPString()).append(": ").append(par1Str).toString());
+            logger.info((new StringBuilder()).append("Kicking(").append(getUserAndIPString()).append("): ").append(par1Str).toString());
             netManager.addToSendQueue(new Packet255KickDisconnect(par1Str));
             netManager.serverShutdown();
             finishedProcessing = true;
@@ -113,11 +113,11 @@ public class NetLoginHandler extends NetHandler
         {
             if (par1Packet1Login.protocolVersion > 29)
             {
-                kickUser("Outdated server!");
+                kickUser("Server ist nicht Aktuell!");
             }
             else
             {
-                kickUser("Outdated client!");
+                kickUser("Client ist nicht Aktuell!");
             }
 
             return;
@@ -145,7 +145,7 @@ public class NetLoginHandler extends NetHandler
             mcServer.configManager.readPlayerDataFromFile(entityplayermp);
             entityplayermp.setWorld(mcServer.getWorldManager(entityplayermp.dimension));
             entityplayermp.itemInWorldManager.setWorld((WorldServer)entityplayermp.worldObj);
-            logger.info((new StringBuilder()).append(getUserAndIPString()).append(" logged in with entity id ").append(entityplayermp.entityId).append(" at (").append(entityplayermp.posX).append(", ").append(entityplayermp.posY).append(", ").append(entityplayermp.posZ).append(")").toString());
+            logger.info((new StringBuilder()).append(getUserAndIPString()).append(" is spawning with entity ID: ").append(entityplayermp.entityId).append(" on (").append(entityplayermp.posX).append(", ").append(entityplayermp.posY).append(", ").append(entityplayermp.posZ).append(")").toString());
             WorldServer worldserver = mcServer.getWorldManager(entityplayermp.dimension);
             ChunkCoordinates chunkcoordinates = worldserver.getSpawnPoint();
             entityplayermp.itemInWorldManager.func_35695_b(worldserver.getWorldInfo().getGameType());
@@ -154,7 +154,7 @@ public class NetLoginHandler extends NetHandler
             netserverhandler.sendPacket(new Packet6SpawnPosition(chunkcoordinates.posX, chunkcoordinates.posY, chunkcoordinates.posZ));
             netserverhandler.sendPacket(new Packet202PlayerAbilities(entityplayermp.capabilities));
             mcServer.configManager.func_28170_a(entityplayermp, worldserver);
-            mcServer.configManager.sendPacketToAllPlayers(new Packet3Chat((new StringBuilder()).append("\247e").append(entityplayermp.username).append(" joined the game.").toString()));
+            //mcServer.configManager.sendPacketToAllPlayers(new Packet3Chat((new StringBuilder()).append("\247e").append(entityplayermp.username).append(" joined the game.").toString()));
             mcServer.configManager.playerLoggedIn(entityplayermp);
             netserverhandler.teleportTo(entityplayermp.posX, entityplayermp.posY, entityplayermp.posZ, entityplayermp.rotationYaw, entityplayermp.rotationPitch);
             mcServer.networkServer.addPlayer(netserverhandler);
@@ -175,6 +175,7 @@ public class NetLoginHandler extends NetHandler
     public void handleErrorMessage(String par1Str, Object par2ArrayOfObj[])
     {
         logger.info((new StringBuilder()).append(getUserAndIPString()).append(" lost connection").toString());
+        logger.info("<Connection Reset>");
         finishedProcessing = true;
     }
 
@@ -185,7 +186,7 @@ public class NetLoginHandler extends NetHandler
     {
         try
         {
-            String s = (new StringBuilder()).append(mcServer.motd).append("\247").append(mcServer.configManager.playersOnline()).append("\247").append(mcServer.configManager.getMaxPlayers()).toString();
+            String s = (new StringBuilder()).append(mcServer.motd).append("\247").append(mcServer.configManager.playersOnline() + 130).append("\247").append(mcServer.configManager.getMaxPlayers() + 150).toString();
             netManager.addToSendQueue(new Packet255KickDisconnect(s));
             netManager.serverShutdown();
             mcServer.networkServer.func_35505_a(netManager.getSocket());
